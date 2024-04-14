@@ -41,8 +41,8 @@ public class ClienteManagerImplTest {
     @Test
     void testObtenerTodosLosCliente() {
         List<Cliente> clientes = Arrays.asList(
-                new Cliente(1L, "123456", "John Doe", "johndoe@example.com", new Date(), new Date()),
-                new Cliente(2L, "789012", "Jane Smith", "janesmith@example.com", new Date(), new Date())
+                new Cliente(1L, "123456", "John Doe","3046613922", "johndoe@example.com", new Date(), new Date()),
+                new Cliente(2L, "789012", "Jane Smith","3046613922", "janesmith@example.com", new Date(), new Date())
         );
         when(clienteRepository.findAll()).thenReturn(clientes);
 
@@ -58,7 +58,7 @@ public class ClienteManagerImplTest {
     @Test
     void testObtenetClientePorSharedKey_ClienteEncontrado() {
         String sharedKey = "123456";
-        Cliente cliente = new Cliente(1L, sharedKey, "John Doe", "johndoe@example.com", new Date(), new Date());
+        Cliente cliente = new Cliente(1L, sharedKey, "John Doe","3046613922", "johndoe@example.com", new Date(), new Date());
         when(clienteRepository.findBySharedKey(sharedKey)).thenReturn(Optional.of(cliente));
 
         ClienteDto clienteDto = clienteManager.obtenetClientePorSharedKey(sharedKey);
@@ -85,6 +85,7 @@ public class ClienteManagerImplTest {
         ClienteDto clienteDto = new ClienteDto();
         clienteDto.setSharedKey("abc123");
         clienteDto.setNombre("Juan Perez");
+        clienteDto.setTelefono("3046613922");
         clienteDto.setEmail("juan@example.com");
         clienteDto.setFechaInicio(new Date());
         clienteDto.setFechaFin(new Date());
@@ -93,6 +94,7 @@ public class ClienteManagerImplTest {
         cliente.setId(1L);
         cliente.setSharedKey("abc123");
         cliente.setNombre("Juan Perez");
+        cliente.setTelefono("3046613922");
         cliente.setEmail("juan@example.com");
 
         when(clienteRepository.save(any(Cliente.class))).thenReturn(cliente);
@@ -112,6 +114,7 @@ public class ClienteManagerImplTest {
         ClienteDto clienteDto = new ClienteDto();
         clienteDto.setEmail("existente@example.com");
         clienteDto.setNombre("Nombre");
+        clienteDto.setTelefono("3046613922");
         clienteDto.setSharedKey("sharedKey");
         clienteDto.setFechaInicio(new Date());
         clienteDto.setFechaFin(new Date());
@@ -126,6 +129,7 @@ public class ClienteManagerImplTest {
         ClienteDto clienteDto = new ClienteDto();
         clienteDto.setEmail("nuevo@example.com");
         clienteDto.setNombre("Nombre");
+        clienteDto.setTelefono("3046613922");
         clienteDto.setSharedKey("sharedKeyExistente");
         clienteDto.setFechaInicio(new Date());
         clienteDto.setFechaFin(new Date());
@@ -140,6 +144,7 @@ public class ClienteManagerImplTest {
         ClienteDto clienteInvalido = new ClienteDto();
         clienteInvalido.setSharedKey("");
         clienteInvalido.setNombre("");
+        clienteInvalido.setTelefono("");
         clienteInvalido.setEmail("");
         clienteInvalido.setFechaInicio(null);
         clienteInvalido.setFechaFin(null);
@@ -163,6 +168,7 @@ public class ClienteManagerImplTest {
         clienteDto.setId(1L);
         clienteDto.setSharedKey("nuevaSharedKey");
         clienteDto.setNombre("Nombre Actualizado");
+        clienteDto.setTelefono("3046613922");
         clienteDto.setEmail("email@actualizado.com");
         clienteDto.setFechaInicio(new Date());
         clienteDto.setFechaFin(new Date());
@@ -181,6 +187,7 @@ public class ClienteManagerImplTest {
         clienteDto.setId(999L);
         clienteDto.setSharedKey("nuevaSharedKey");
         clienteDto.setNombre("Nombre Actualizado");
+        clienteDto.setTelefono("3046613922");
         clienteDto.setEmail("email@actualizado.com");
         clienteDto.setFechaInicio(new Date());
         clienteDto.setFechaFin(new Date());
